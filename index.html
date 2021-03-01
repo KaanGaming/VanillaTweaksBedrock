@@ -105,6 +105,54 @@
                                     animation: octocat-wave 560ms ease-in-out
                                 }
                             }
+
+                            hr {
+                                background-image: linear-gradient(to right, #fff, #000, #fff);
+                            }
+
+                            .bigheaderz {
+                                text-align: center;
+                                letter-spacing: 3px;
+                            }
+
+                            .maincentered {
+                                min-width: 1px;
+                                margin: auto;
+                                /* center everything in page :) */
+                            }
+
+                            .thecontent {
+                                border: 1px solid black;
+                                border-radius: 25px;
+                                background-image: url("img/background_grid.png");
+                                padding: 25px;
+                                margin: 25px;
+                            }
+
+                            .thetitle {
+                                letter-spacing: 2px;
+                                font-weight: bolder;
+                                text-align: center;
+                                background-image: radial-gradient(rgba(0,0,0,0.4),transparent,transparent);
+                                transition-duration: 0.5s;
+                                transition-timing-function: ease-out;
+                                background-size: 100%;
+                            }
+
+                            .thetitle:hover {
+                                letter-spacing: 4px;
+                                background-size: 150%;
+                                background-position-x: 50%;
+                            }
+
+                            #select-all2 {
+                                text-align: center;
+                            }
+
+                            .selectall {
+                                font-weight: bold;
+                                transition-duration: 0.4s;
+                            }
                         </style>
                     </li>
                 </ul>
@@ -112,8 +160,9 @@
         </div>
 
         <div class="row">
-            <div class="col-md-9">
-                <h1>Vanilla Tweaks Bedrock</h1>
+            <div class="col-md-9 maincentered">
+                <h1 class="bigheaderz">Vanilla Tweaks Bedrock</h1>
+                <hr />
                 <!-- ===================== -->
                 <!-- === C O N T E N T === -->
                 <!-- ===================== -->
@@ -122,17 +171,39 @@
                     If you have any issues please don't hesitate to contact me on <a href="https://github.com/PiSaucer/VanillaTweaksBedrock/issues" target="_blank">GitHub</a>. <br><span class="warningColorRed">Warning: If you select packs that use the same textures files, it will pick the lowest one textures for you. You can can drag and drop the order that you want them to be into.</span>
                 </p>
 
+                <script>
+                    var selectallobj = null;
+                    var selectalltick = null;
+
+                    function selectallcss() {
+                        if (selectalltick.checked) selectallobj.style.color = "#0a0";
+                        else selectallobj.style.color = "#000";
+                    }
+
+                    function initThing() {
+                        selectallobj = document.getElementsByClassName("selectall")[0];
+                        selectalltick = document.getElementById("select-all");
+                        selectallobj.addEventListener("click", e => {
+                            selectalltick.checked = !selectalltick.checked;
+                            selectallcss();
+                        });
+                    }
+
+                    setTimeout(initThing, 500);
+                </script>
+
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="downloader-result">
                         <div class="show-example">
-                            <div id="downloader_application">
-                                <h2>Please select the packs you want</h2>
+                            <div id="downloader_application" class="thecontent">
+                                <h2 class="thetitle">Please select the packs you want</h2>
                                 <form action="#" id="download_form">
                                     <ul id="sortablelist">
-                                        <li>
-                                            <input type="checkbox" id="select-all" data-amount=1 data-url1="" data-folder1="">
-                                            <label>Select All For Everything</label>
+                                        <li id="select-all2">
+                                            <input style="text-align: center" oninput="selectallcss();" type="checkbox" id="select-all" data-amount=1 data-url1="" data-folder1="">
+                                            <label class="selectall">Select All For Everything</label>
                                         </li>
+                                        <hr />
                                         <h3>
                                             <a href="#aesthetic" data-bs-toggle="collapse">
                                             Aesthetic
